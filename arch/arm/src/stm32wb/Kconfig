@@ -517,6 +517,12 @@ config STM32WB_LPTIM
 
 # These are the peripheral selections proper
 
+config STM32WB_ADC1
+	bool "ADC"
+	default n
+	select STM32WB_ADC
+
+
 comment "AHB1 Peripherals"
 
 config STM32WB_DMA1
