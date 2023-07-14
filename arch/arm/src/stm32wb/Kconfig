@@ -65,6 +65,7 @@ config ARCH_CHIP_STM32WB55CC
 	select STM32WB_STM32WB55
 	select STM32WB_IO_CONFIG_C
 	select STM32WB_FLASH_CONFIG_C_256
+	select STM32WB_HAVE_USBDEV
 	---help---
 		STM32 WB Cortex M4, 256 Kb FLASH, 64+32+32 Kb SRAM
 
@@ -73,6 +74,7 @@ config ARCH_CHIP_STM32WB55RC
 	select STM32WB_STM32WB55
 	select STM32WB_IO_CONFIG_R
 	select STM32WB_FLASH_CONFIG_C_256
+	select STM32WB_HAVE_USBDEV
 	---help---
 		STM32 WB Cortex M4, 256 Kb FLASH, 64+32+32 Kb SRAM
 
@@ -81,6 +83,7 @@ config ARCH_CHIP_STM32WB55VC
 	select STM32WB_STM32WB55
 	select STM32WB_IO_CONFIG_V
 	select STM32WB_FLASH_CONFIG_C_256
+	select STM32WB_HAVE_USBDEV
 	---help---
 		STM32 WB Cortex M4, 256 Kb FLASH, 64+32+32 Kb SRAM
 
@@ -89,6 +92,7 @@ config ARCH_CHIP_STM32WB55CE
 	select STM32WB_STM32WB55
 	select STM32WB_IO_CONFIG_C
 	select STM32WB_FLASH_CONFIG_E_512
+	select STM32WB_HAVE_USBDEV
 	---help---
 		STM32 WB Cortex M4, 512 Kb FLASH, 192+32+32 Kb SRAM
 
@@ -97,6 +101,7 @@ config ARCH_CHIP_STM32WB55RE
 	select STM32WB_STM32WB55
 	select STM32WB_IO_CONFIG_R
 	select STM32WB_FLASH_CONFIG_E_512
+	select STM32WB_HAVE_USBDEV
 	---help---
 		STM32 WB Cortex M4, 512 Kb FLASH, 192+32+32 Kb SRAM
 
@@ -105,6 +110,7 @@ config ARCH_CHIP_STM32WB55VE
 	select STM32WB_STM32WB55
 	select STM32WB_IO_CONFIG_V
 	select STM32WB_FLASH_CONFIG_E_512
+	select STM32WB_HAVE_USBDEV
 	---help---
 		STM32 WB Cortex M4, 512 Kb FLASH, 192+32+32 Kb SRAM
 
@@ -113,6 +119,7 @@ config ARCH_CHIP_STM32WB55VY
 	select STM32WB_STM32WB55
 	select STM32WB_IO_CONFIG_V
 	select STM32WB_FLASH_CONFIG_Y_640
+	select STM32WB_HAVE_USBDEV
 	---help---
 		STM32 WB Cortex M4, 640 Kb FLASH, 192+32+32 Kb SRAM
 
@@ -121,6 +128,7 @@ config ARCH_CHIP_STM32WB55CG
 	select STM32WB_STM32WB55
 	select STM32WB_IO_CONFIG_C
 	select STM32WB_FLASH_CONFIG_G_1024
+	select STM32WB_HAVE_USBDEV
 	---help---
 		STM32 WB Cortex M4, 1024 Kb FLASH, 192+32+32 Kb SRAM
 
@@ -129,6 +137,7 @@ config ARCH_CHIP_STM32WB55RG
 	select STM32WB_STM32WB55
 	select STM32WB_IO_CONFIG_R
 	select STM32WB_FLASH_CONFIG_G_1024
+	select STM32WB_HAVE_USBDEV
 	---help---
 		STM32 WB Cortex M4, 1024 Kb FLASH, 192+32+32 Kb SRAM
 
@@ -137,6 +146,7 @@ config ARCH_CHIP_STM32WB55VG
 	select STM32WB_STM32WB55
 	select STM32WB_IO_CONFIG_V
 	select STM32WB_FLASH_CONFIG_G_1024
+	select STM32WB_HAVE_USBDEV
 	---help---
 		STM32 WB Cortex M4, 1024 Kb FLASH, 192+32+32 Kb SRAM
 
@@ -408,6 +418,10 @@ menu "STM32WB Peripheral Support"
 # These "hidden" settings determine whether a peripheral option is available
 # for the selected MCU
 
+config STM32WB_HAVE_USBDEV
+	bool
+	default n
+
 config STM32WB_GPIO_HAVE_PORTD
 	bool
 	default n
@@ -612,6 +626,11 @@ config STM32WB_USART1
 	select ARCH_HAVE_SERIAL_TERMIOS
 	select STM32WB_USART
 
+config STM32WB_USB
+	bool "USB Device"
+	default n
+	depends on STM32WB_HAVE_USBDEV
+	select USBDEV
 config STM32WB_TIM16
 	bool "TIM16"
 	default n

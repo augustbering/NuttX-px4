@@ -384,21 +384,16 @@ static const struct usbdevclass_driverops_s g_driverops =
 
 static const struct uart_ops_s g_uartops =
 {
-  usbser_setup,         /* setup */
-  usbser_shutdown,      /* shutdown */
-  usbser_attach,        /* attach */
-  usbser_detach,        /* detach */
-  NULL,                 /* ioctl */
-  NULL,                 /* receive */
-  usbser_rxint,         /* rxinit */
-  NULL,                 /* rxavailable */
+  .setup= usbser_setup,         /* setup */
+  .shutdown= usbser_shutdown,      /* shutdown */
+  .attach= usbser_attach,        /* attach */
+  .detach= usbser_detach,        /* detach */
+  .rxint= usbser_rxint,         /* rxinit */
 #ifdef CONFIG_SERIAL_IFLOWCONTROL
   NULL,                 /* rxflowcontrol */
 #endif
-  NULL,                 /* send */
-  usbser_txint,         /* txinit */
-  NULL,                 /* txready */
-  usbser_txempty        /* txempty */
+  .txint= usbser_txint,         /* txinit */
+  .txempty= usbser_txempty        /* txempty */
 };
 
 /* USB descriptor templates these will be copied and modified ***************/
